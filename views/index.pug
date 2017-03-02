@@ -1,0 +1,12 @@
+extends layout
+
+block content
+	h2= title
+	p ログインページ
+	input(type="text", id="name", placeholder="名前", size="30")
+	br
+	input(type="password", id="pass", placeholder="パスワード", size="30")
+	br
+	input(type="button", value="登録", onclick="registration()")
+	input(type="button", value="ログイン", onclick="login()")
+
