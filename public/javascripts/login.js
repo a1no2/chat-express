@@ -3,7 +3,9 @@ function registration(){
 	console.log(userData);
 	var socket = io.connect();
 	socket.emit('registration', userData);
-
+	socket.on('getData', function(data){
+		console.log("帰ってきた" + data);
+	});
 }
 
 

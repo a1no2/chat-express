@@ -17,26 +17,28 @@ var socketio = require('socket.io');
 var io = socketio.listen(server);     //サバとioの紐づけ
 
 
-
-// app.get('/', function(req, res, next) {
+// var express = express();
+// server.on('request', function(req, res){
 
 
 // });
 
 
-  io.sockets.on('connection', function (socket){
-    // console.log(socket);
-    //イベント登録
-    //messageが飛んで来たら・・・
-    socket.on('registration', function(data){
-      console.log(data);
-      // req.session.name = data[0];
-      // req.session.pass = data[1];
-      // console.log(req.session.name);
-      // console.log(req.session.pass);
-
-    });
+io.sockets.on('connection', function (socket){
+// console.log(socket);
+//イベント登録
+//messageが飛んで来たら・・・
+  socket.on('registration', function(data){
+    console.log(data);
+    // app.use(express.session({name: data[0]}));
+    // req.session.pass = data[1];
+    // console.log(req.session.name);
+    // console.log(req.session.pass);
+    io.sockets.emit('getData', data);
+  
   });
+});
+
 
 
 
