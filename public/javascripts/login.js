@@ -6,6 +6,8 @@ function registration(){
 	socket.on('getData', function(data){
 		console.log("帰ってきた" + data);
 	});
+	location.href='./chat';
+	
 }
 
 

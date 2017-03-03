@@ -5,19 +5,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
+
+var session = require('express-session'); // 追加
+
+//ページ
 var index = require('./routes/index');
 var users = require('./routes/users');
 var chat = require('./routes/chat');
-
-
-
-
-//追加
-var session = require('express-session'); // 追加
 var login = require('./routes/login');  // 追加
 
 
-//ここまで
 
 
 
@@ -40,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // 追加 
+// セッションの設定のようなもの
 app.use(session({
   secret: 'name',				//必須
   resave: false,				//変更がない場合の保存するか
@@ -50,7 +49,14 @@ app.use(session({
   }
 }));
 
-
+//セッションチェック
+var sessionCheck = function(req, res, next) {
+  if (req.session.user) {     //user見に行って・・・
+    next();
+  } else {
+    res.redirect('/login');   //なかったらログインページに戻す
+  }
+};
 
 
 
@@ -62,8 +68,9 @@ app.use(session({
 
 
 
-
-app.use('/', index);
+app.use('/login', login);  // 追加
+// app.use('/', sessionCheck, login);  // sessionCheckを前処理に追加
+app.use('/index', index);
 app.use('/users', users);
 app.use('/chat', chat);
 
