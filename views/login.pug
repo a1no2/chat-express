@@ -3,12 +3,14 @@ extends layout
 block content
 	h2= title
 	p ログインページ
-	input(type="text", id="name", placeholder="名前", size="30")
-	br
-	input(type="password", id="pass", placeholder="パスワード", size="30")
-	br
-	input(type="button", value="登録", onclick="registration()")
-	input(type="button", value="ログイン", onclick="login()")
+	p.caution= error
+	form(method='POST',action='/login', name="loginForm")
+		input(type="text", id="name", name="userName", placeholder="名前", size="30")
+		br
+		input(type="password", id="pass", name="pass", placeholder="パスワード", size="30")
+		br
+		input(type="submit", name="newUser", value="新規登録")
+		input(type="submit", name="login", value="ログイン")
 
 
 

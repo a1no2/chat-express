@@ -51,11 +51,16 @@ app.use(session({
 
 //セッションチェック
 var sessionCheck = function(req, res, next) {
-  if (req.session.user) {     //user見に行って・・・
-    next();
-  } else {
-    res.redirect('/login');   //なかったらログインページに戻す
-  }
+  // if (document.loginForm.value == "登録") {
+  //   console.log("new");
+  // } else {
+  //   console.log("login");
+  // }
+  // if (req.session.user) {     //user見に行って・・・
+  //   next();
+  // } else {
+  //   res.redirect('/login');   //なかったらログインページに戻す
+  // }
 };
 
 
@@ -69,8 +74,8 @@ var sessionCheck = function(req, res, next) {
 
 
 app.use('/login', login);  // 追加
-// app.use('/', sessionCheck, login);  // sessionCheckを前処理に追加
-app.use('/index', index);
+app.use('/', sessionCheck, login);  // sessionCheckを前処理に追加
+// app.use('/index', index);
 app.use('/users', users);
 app.use('/chat', chat);
 
