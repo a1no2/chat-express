@@ -25,9 +25,9 @@ var io = socketio.listen(server);     //サバとioの紐づけ
 
 
 io.sockets.on('connection', function (socket){
-// console.log(socket);
-//イベント登録
-//messageが飛んで来たら・・・
+  // console.log(socket);
+  //イベント登録
+  //messageが飛んで来たら・・・
   socket.on('registration', function(data){
     console.log(data);
     // app.use(express.session({name: data[0]}));
@@ -35,6 +35,13 @@ io.sockets.on('connection', function (socket){
     // console.log(req.session.name);
     // console.log(req.session.pass);
     io.sockets.emit('getData', data);
+  
+  });
+
+
+  socket.on('message', function(data){
+    console.log(data);
+    io.sockets.emit('fromSever_Message', data);
   
   });
 });

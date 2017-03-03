@@ -6,3 +6,42 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+.inlineBlock {
+	display: inline-block;
+}
+#arrChat {
+	width: 800px;
+}
+#arrChat ul {
+	padding-right: 10px;
+	padding-left: 10px;
+}
+#arrChat li {
+	list-style:none;
+	margin-bottom: 5px;
+	border-bottom: 1px solid #eee;
+}
+#arrChat #usersDiv{
+	/*background: #ddd;*/
+	vertical-align: top;
+	/*border: 1px solid #000;*/
+	width: 100px
+}
+
+
+
+#arrChat #chatOrchid{
+	position: absolute;
+	/*overflow: scroll;*/
+	/*width: 678px;*/
+	/*height: 450px;*/
+	margin-top: 0;
+	padding-left: 20px;
+
+}
+
+#arrChat #Sendchat{
+	
+}

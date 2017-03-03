@@ -1,0 +1,19 @@
+extends layout
+
+block content
+	h2= title
+	div(id="arrChat")
+		div(id="usersDiv" class="inlineBlock")
+			span ユーザー
+			ul(id="usersList")
+				li aaa
+				li aaa
+				li aaa
+		div(class="inlineBlock")
+			div(id="Sendchat")
+				input(type="text", id="text", placeholder="メッセージ", size="30")
+				input(type="button", value="送信", onclick="send()")
+			ul(id="chatOrchid")
+				li aaaa
+
+
