@@ -1,28 +1,16 @@
-// window.onload = function(){
-// 	socket.on('getData', function(data){
-// 		console.log("帰ってきた:" + data);
-// 	});
-// }
+function check(){
+	var flag = false;
+	if (document.loginForm.userName.value == "") {
+		flag = true;
+	} else if(document.loginForm.pass.value == "") {
+		flag = true;
+	}
 
-
-function registration(){
-	var userData = getUserData();
-	console.log(userData);
-	var socket = io.connect();
-	socket.emit('registration', userData);
-
-	location.href='./chat';
-	
+	if (flag) {
+		alert("記入漏れがあります。");
+		return false;
+	} else {
+		return true;
+	}
 }
 
-
-
-
-
-function getUserData(){
-	var userData = [
-		document.getElementById("name").value,
-		document.getElementById("pass").value
-	];
-	return userData;
-}

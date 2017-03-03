@@ -4,7 +4,7 @@ block content
 	h2= title
 	p ログインページ
 	p.caution= error
-	form(method='POST',action='/login', name="loginForm")
+	form(method='POST',action='/login', name="loginForm", onSubmit="return check()")
 		input(type="text", id="name", name="userName", placeholder="名前", size="30")
 		br
 		input(type="password", id="pass", name="pass", placeholder="パスワード", size="30")
