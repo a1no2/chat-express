@@ -9,8 +9,9 @@ function check(){
 	if (flag) {
 		alert("記入漏れがあります。");
 		return false;
-	} else {
-		return true;
 	}
 }
+
+
+
 

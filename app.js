@@ -51,16 +51,11 @@ app.use(session({
 
 //セッションチェック
 var sessionCheck = function(req, res, next) {
-  // if (document.loginForm.value == "登録") {
-  //   console.log("new");
-  // } else {
-  //   console.log("login");
-  // }
-  // if (req.session.user) {     //user見に行って・・・
-  //   next();
-  // } else {
-  //   res.redirect('/login');   //なかったらログインページに戻す
-  // }
+  if (req.session.user) {     //user見に行って・・・
+    next();
+  } else {
+    res.redirect('/login');   //なかったらログインページに戻す
+  }
 };
 
 
@@ -73,12 +68,20 @@ var sessionCheck = function(req, res, next) {
 
 
 
-app.use('/login', login);  // 追加
-app.use('/', sessionCheck, login);  // sessionCheckを前処理に追加
+// app.use('/', sessionCheck, login);  // sessionCheckを前処理に追加
 // app.use('/index', index);
+// 
+app.use('/', login);  // sessionCheckを前処理に追加
+app.use('/login', login);  // 追加
 app.use('/users', users);
 app.use('/chat', chat);
 
+// app.use('/users', user.users);
+// app.use('/chat', user.chat);
+// app.use('/login', routes.login);
+
+
+  // 追加
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

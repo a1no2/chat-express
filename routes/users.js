@@ -10,3 +10,11 @@ router.get('/', function(req, res, next) {
 // });
 
 module.exports = router;
+
+
+
+
+// 以下のコード追加
+exports.login = function(req, res){
+  res.render("login",{title:"login"});
+};
