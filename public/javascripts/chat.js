@@ -15,7 +15,7 @@ window.onload = function(){
 // messageを鯖に送る
 function send(){
 	// var name = document.getElementById('text');
-	var name = "名無し";
+	var name = document.getElementById('userName').innerHTML;
 	var text = document.getElementById('text');
 	if (text.value != "") {
 		socket.emit('message', {text: text.value, name: name});

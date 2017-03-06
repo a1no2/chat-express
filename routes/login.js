@@ -19,52 +19,38 @@ router.post('/', function(req, res, next) {
 			// console.error(err);
 			console.log('open DB');
 			collection = db.collection('user');
-			// collection.createIndex({username: 1}, {unique: true});
+			// collection.drop();
+			collection.createIndex({userName: 1}, {unique: true});
 
 			var value = ({userName: req.body.userName  ,pass: req.body.pass});
-			
-			//ユニークなユーザー名か判定
-			var registrationFlag = true;
-			collection.find().forEach(function(elem){
-			// collection.find().some(function(elem){
-				console.log(elem);
-				//かぶったら登録しない
-				// if (elem.userName == value.userName) {
-				// 	console.log("かぶり");
-				// 	RegistrationFlag = false;
-				// }
-				// console.log(registrationFlag);
+			// collection.find().forEach(function(elem){
+			// 	console.log(elem);
+			// });
 
+			//ユニークなユーザー名なら登録される
+			collection.insertOne(value, function(err,r){
+				console.log("data追加:" + value.userName);
+				console.log(err);
+				if (err != null) {
+					res.render('login', {title: "login", error: "そのユーザー名は使えません。"});
+				} else {
+					//登録終わったらセッションわたす
+					req.session.user = {login: 'true'};
+					res.render('chat', {title: 'chat', userName: value.userName});
+				}
 			});
 
 
-			// var hoge = collection.find({userName: req.body.userName});
-			// console.log(hoge.);
-
-			//ユーザー名が、かぶっていなければ(登録フラグがたっていれば)DBに追加
-			// if (registrationFlag) {
-				collection.insertOne(value, function(err,r){
-					console.log("data追加:" + value.userName);
-					//登録されたらセッションでユーザー名を渡す
-					// req.session.user = {name: value.userName};
-				});
-			// 	// res.render('chat', {user: req.body.userName});
-			// } else {
-			// 	res.render('login', {title: "login", error: "そのユーザー名は使えません。"});
-			// }
-			//  else {
-			// 	console.log();
-			// }
-
-
-			// collection.drop();
+			// collection.find().forEach(function(elem){
+			// 	console.log(elem);
+			// });
 
 
 
 			//DBとじ
-			// db.on('clause', function(){
-			// 	console.log('clause DB');
-			// })
+			db.on('clause', function(){
+				console.log('clause DB');
+			})
 			db.close();
 
 		});
